@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2497322390683890551}
   - component: {fileID: 6257225345280025942}
   - component: {fileID: 1260554931161308392}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2778905096429885471}
   - component: {fileID: 2097026039355883052}
   - component: {fileID: 1323807869588755963}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 637084707208704497}
   - component: {fileID: 4945196769333603372}
   - component: {fileID: 1749230196326047507}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 784136927705526728}
   - component: {fileID: 3910893671876487292}
   - component: {fileID: 1150711463765449722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 5721557290818131488}
   - component: {fileID: 5044846663398760864}
   - component: {fileID: 6476653359715063957}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 3945322122841083209}
   - component: {fileID: 8909309770040013471}
   - component: {fileID: 1123597817259628360}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,8 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb0edcf205f15a428485305b60aeb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 5
+  explosionRadius: 10
   explosionForce: 500
+  ignorePlayer: 1
 --- !u!1 &7582635945152258017
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ GameObject:
   - component: {fileID: 1740326532756682876}
   - component: {fileID: 5768445154999930404}
   - component: {fileID: 4417167988457318136}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Box008
   m_TagString: Untagged
   m_Icon: {fileID: 0}

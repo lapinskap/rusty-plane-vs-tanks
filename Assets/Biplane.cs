@@ -70,10 +70,13 @@ public class Biplane : MonoBehaviour
     {
         Vector2 moveVec = moveAction.ReadValue<Vector2>();
         bool isMovingFaster = moveFasterAction.ReadValue<float>() > 0.5f;
-        float speedMultiplier = isMovingFaster ? 2.0f : 1.0f;
+        float speedMultiplier = isMovingFaster ? 4.0f : 2.0f;
 
         rigidBody.AddRelativeTorque(new Vector3(-moveVec.x, 0.0f, -moveVec.y) * speedMultiplier);
         rigidBody.AddForce(transform.right * speedMultiplier);
-        propeller.rotation *= Quaternion.Euler(1500.0f * Time.deltaTime, 0.0f, 0.0f);
+        
+        // Spin the propeller twice as fast when sprinting
+        float propellerSpeed = isMovingFaster ? 3000.0f : 1500.0f;
+        propeller.rotation *= Quaternion.Euler(propellerSpeed * Time.deltaTime, 0.0f, 0.0f);
     }
 }

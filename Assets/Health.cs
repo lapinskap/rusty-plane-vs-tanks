@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
 {
     [Header("Health Settings")]
     public float maxHealth = 100f;
+    public bool isGodMode = false;
     private float currentHealth;
 
     [Header("Events")]
@@ -22,7 +23,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (currentHealth <= 0) return; // Already dead
+        if (isGodMode || currentHealth <= 0) return; // Already dead or in god mode
 
         currentHealth -= amount;
         Debug.Log(gameObject.name + " took " + amount + " damage! Remaining: " + currentHealth);

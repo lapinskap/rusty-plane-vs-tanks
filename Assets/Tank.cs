@@ -11,7 +11,7 @@ public class Tank : MonoBehaviour
     Rigidbody playerRigidbody; // Needed to get the plane's velocity
 
     float timeUntilWander = 0.0f;
-    float timeUntilFire = 2.0f; // Separate timer for shooting
+    float timeUntilFire = 10.0f; // Separate timer for shooting
     float rocketSpeed = 45.0f; // Extracted to a variable for prediction math
     
 
@@ -102,6 +102,13 @@ public class Tank : MonoBehaviour
                 // Spawn the rocket at the tower's tip, facing the same way as the tower
                 var rocketInstance = Instantiate(rocket, tower.position + tower.forward * 3.5f, tower.rotation);
                 rocketInstance.GetComponent<Rigidbody>().linearVelocity = tower.forward * rocketSpeed;
+                
+                // Tell the rocket who shot it, so the tank doesn't blow itself up
+                var bombScript = rocketInstance.GetComponent<BombCollision>();
+                if (bombScript != null)
+                {
+                    bombScript.shooterHealth = GetComponent<Health>();
+                }
             }
         }
     }

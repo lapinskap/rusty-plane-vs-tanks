@@ -10,6 +10,9 @@ public class BombCollision : MonoBehaviour
     [Tooltip("If true, this explosive will ignore collisions with the Biplane. Check this for player bombs, uncheck for tank rockets.")]
     public bool ignorePlayer = true;
     
+    // We can assign this via script when firing, so the shooter never damages themselves
+    [HideInInspector] public Health shooterHealth;
+    
     // We use a flag so it doesn't trigger multiple times in one frame
     private bool hasExploded = false;
 
@@ -22,6 +25,16 @@ public class BombCollision : MonoBehaviour
         if (ignorePlayer && collision.gameObject.GetComponentInParent<Biplane>() != null) 
         {
             return;
+        }
+
+        // Ignore physical collision trigger if we hit the person who shot us!
+        if (shooterHealth != null)
+        {
+            Health hitHealth = collision.gameObject.GetComponentInParent<Health>();
+            if (hitHealth != null && hitHealth == shooterHealth)
+            {
+                return; // Bounce off or pass through, but don't explode yet
+            }
         }
 
         hasExploded = true;
@@ -42,6 +55,10 @@ public class BombCollision : MonoBehaviour
 
         // 2. Physics Logic (Find everything in the blast radius)
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        
+        // Keep track of who we've already damaged so multi-collider objects don't take 5x damage
+        System.Collections.Generic.HashSet<Health> damagedTargets = new System.Collections.Generic.HashSet<Health>();
+
         foreach (Collider nearbyObject in colliders)
         {
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
@@ -53,14 +70,32 @@ public class BombCollision : MonoBehaviour
             
             // Check if the object we hit has a Health component
             Health targetHealth = nearbyObject.GetComponentInParent<Health>();
-            if (targetHealth != null)
+            
+            // Self-Damage Check: If this target is the one who shot the bomb, ignore it completely!
+            if (targetHealth != null && targetHealth == shooterHealth)
             {
+                continue;
+            }
+
+            if (targetHealth != null && !damagedTargets.Contains(targetHealth))
+            {
+                damagedTargets.Add(targetHealth);
+                
                 // Calculate damage based on distance (closer = more damage)
-                float distance = Vector3.Distance(transform.position, nearbyObject.transform.position);
-                float damageMultiplier = 1.0f - (distance / explosionRadius);
+                // IMPORTANT FIX 2: Use bounds.ClosestPoint instead of ClosestPoint. 
+                // Regular ClosestPoint crashes Unity if the target (like your Tank) uses a non-convex MeshCollider!
+                // When Unity crashes during a script, it stops running, which is why the bomb was never getting destroyed (sliding off).
+                Vector3 closestPoint = nearbyObject.bounds.ClosestPoint(transform.position);
+                float distance = Vector3.Distance(transform.position, closestPoint);
+                
+                // IMPORTANT FIX: Prevent negative damage if distance is slightly larger than explosion radius
+                float damageMultiplier = Mathf.Clamp01(1.0f - (distance / explosionRadius));
                 float damageToDeal = 50.0f * damageMultiplier; // Max 50 damage at the center
                 
-                targetHealth.TakeDamage(damageToDeal);
+                if (damageToDeal > 0)
+                {
+                    targetHealth.TakeDamage(damageToDeal);
+                }
             }
         }
 

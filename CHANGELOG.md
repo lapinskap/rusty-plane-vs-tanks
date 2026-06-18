@@ -1,3 +1,8 @@
+### 0.7.0
+
+Add Terrain textures, add Texture Layers
+
+Write Auto Paint Script
 
 ### 0.6.0
 
@@ -42,7 +47,7 @@ Added Gravity Compensation to bombs and rockets
 
 Reasoning:
 Because Physics.gravity in Unity is a downward force (usually (0, -9.81, 0)), we calculate that downward distance, and then invert it (using a minus sign) to aim the tank's tower perfectly upward by that exact amount
-A
+
 ### 0.4.0
 
 Added BombCollision.cs for bomb collision. 
