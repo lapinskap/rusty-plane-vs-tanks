@@ -50,6 +50,37 @@ public class Biplane : MonoBehaviour
         // but it will look like a nice big blast!
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        // 1. Get the first point of contact to see WHICH of our child colliders hit
+        Collider ourCollider = collision.GetContact(0).thisCollider;
+
+        // 2. Check if the object that hit is named "Wheels"
+        // (Make sure the child GameObject in Unity is named exactly "Wheels"!)
+        if (ourCollider.gameObject.name == "Wheels")
+        {
+            // It's a landing/bump on the wheels. We are safe!
+            return;
+        }
+
+        // 3. If we get here, the body/wings hit something! 
+        // Calculate how hard the impact was based on velocity
+        float impactSpeed = collision.relativeVelocity.magnitude;
+
+        // 4. Require a minimum impact speed to cause damage so tiny grazes don't destroy us
+        if (impactSpeed > 2.0f)
+        {
+            Health myHealth = GetComponent<Health>();
+            if (myHealth != null)
+            {
+                // Calculate damage. Adjust the multiplier (e.g., 5f) to make crashes more or less lethal.
+                float damage = impactSpeed * 5f; 
+                myHealth.TakeDamage(damage);
+                Debug.Log($"Crash! {ourCollider.gameObject.name} hit {collision.gameObject.name} at speed {impactSpeed}. Took {damage} damage.");
+            }
+        }
+    }
+
     void FireMissile()
     {
         // 1. Determine spawn position. Use the assigned point, or default to 1.5 units below the plane's center.

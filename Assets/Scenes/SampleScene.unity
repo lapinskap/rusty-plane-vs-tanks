@@ -1209,9 +1209,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2103612095731332659, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
-      propertyPath: isGodMode
-      value: 1
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99984777
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.01745245
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356558712820875812, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5251681194348313562, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1253,6 +1277,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8143627370431110524, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143627370431110524, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 66706f4b812845141a532eddc8338276, type: 2}
     - target: {fileID: 9131859547997866441, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
       propertyPath: m_Name
       value: Biplane
