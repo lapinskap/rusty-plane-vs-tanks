@@ -1,3 +1,12 @@
+## 0.8.0
+
+Introduce Mission logic:
+
+- introduce onTrigger colliders, checkpoint rings
+- VictoryUI.cs: panel to show when player wins
+- MissonManager.cs: "the brains" of the mission
+- Finish line - a base player returns into
+
 ### 0.7.0
 
 Add Terrain textures, add Texture Layers
