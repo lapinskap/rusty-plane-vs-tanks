@@ -5,6 +5,7 @@ public class BombCollision : MonoBehaviour
     [Header("Explosion Settings")]
     public float explosionRadius = 5.0f;
     public float explosionForce = 500.0f;
+    public GameObject explosionPrefab; // The new fire explosion prefab!
     public GameObject smokeEffectPrefab;
     
     [Header("Friendly Fire")]
@@ -44,15 +45,25 @@ public class BombCollision : MonoBehaviour
 
     void Explode()
     {
-        // 1. Prototype Visual Effect (Creates an expanding red sphere)
-        GameObject explosionVisual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        explosionVisual.transform.position = transform.position;
-        
-        // Remove the collider so our fake explosion doesn't physically push things
-        Destroy(explosionVisual.GetComponent<Collider>());
-        
-        // Add a temporary script to handle the visual expansion and destruction
-        explosionVisual.AddComponent<ExplosionEffect>();
+        // 1. Visual Effect (Use the new package prefab, or fallback to the red sphere)
+        if (explosionPrefab != null)
+        {
+            GameObject explosionVisual = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            // Most packages auto-destroy, but just in case, clean it up after 4 seconds
+            Destroy(explosionVisual, 4f); 
+        }
+        else
+        {
+            // Fallback: Prototype Visual Effect (Creates an expanding red sphere)
+            GameObject explosionVisual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            explosionVisual.transform.position = transform.position;
+            
+            // Remove the collider so our fake explosion doesn't physically push things
+            Destroy(explosionVisual.GetComponent<Collider>());
+            
+            // Add a temporary script to handle the visual expansion and destruction
+            explosionVisual.AddComponent<ExplosionEffect>();
+        }
 
         // Add our cool new smoke effect on top of the blast!
         if (smokeEffectPrefab != null)
@@ -99,7 +110,7 @@ public class BombCollision : MonoBehaviour
                 
                 // IMPORTANT FIX: Prevent negative damage if distance is slightly larger than explosion radius
                 float damageMultiplier = Mathf.Clamp01(1.0f - (distance / explosionRadius));
-                float damageToDeal = 50.0f * damageMultiplier; // Max 50 damage at the center
+                float damageToDeal = 30.0f * damageMultiplier; // Max 30 damage at the center
                 
                 if (damageToDeal > 0)
                 {

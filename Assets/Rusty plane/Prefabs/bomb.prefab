@@ -557,8 +557,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRadius: 10
-  explosionForce: 500
+  explosionForce: 5000
+  explosionPrefab: {fileID: 1998830269065593993, guid: b70fbea4bc8994749ba52e4f560f9f28, type: 3}
+  smokeEffectPrefab: {fileID: 9093433604145932470, guid: 894d093a166fed24eb9952552d01385f, type: 3}
   ignorePlayer: 1
+  shooterHealth: {fileID: 0}
 --- !u!1 &7582635945152258017
 GameObject:
   m_ObjectHideFlags: 0
