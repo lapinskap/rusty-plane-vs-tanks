@@ -6,6 +6,11 @@ public class VictoryUI : MonoBehaviour
     [Tooltip("Drag the Victory Panel here.")]
     public GameObject victoryPanel;
 
+    void Awake()
+    {
+       // Decided to use Inspector assignment for the victoryPanel instead of finding it in code. This is more efficient and avoids potential null reference issues.
+    }
+
     void Start()
     {
         // 1. Hide the panel when the game starts
@@ -13,15 +18,9 @@ public class VictoryUI : MonoBehaviour
         {
             victoryPanel.SetActive(false);
         }
-
-        // 2. Listen for the Victory event from the Mission Manager
-        if (MissionManager.Instance != null)
-        {
-            MissionManager.Instance.OnVictory.AddListener(ShowVictoryScreen);
-        }
     }
 
-    void ShowVictoryScreen()
+    public void ShowVictoryScreen()
     {
         if (victoryPanel != null)
         {

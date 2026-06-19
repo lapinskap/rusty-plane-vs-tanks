@@ -8,7 +8,7 @@ public class FinishLine : MonoBehaviour
         // Check if the thing entering the base is the Biplane
         if (other.GetComponentInParent<Biplane>() != null)
         {
-            // Tell the manager we arrived!
+            // Tell the manager we arrived
             MissionManager.Instance.ReachFinishLine();
         }
     }

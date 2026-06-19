@@ -15,6 +15,9 @@ public class MissionManager : MonoBehaviour
     [Header("UI References")]
     [Tooltip("Drag the TextMeshPro text here to display 'Rings: 0/5'")]
     public TextMeshProUGUI ringsText;
+    
+    [Tooltip("Drag a TextMeshPro text here to display instructions like 'Return to Base!'")]
+    public TextMeshProUGUI instructionText;
 
     [Header("Events")]
     [Tooltip("Fired when the player gets all rings (e.g., to turn on a spotlight at the base)")]
@@ -39,6 +42,12 @@ public class MissionManager : MonoBehaviour
     void Start()
     {
         UpdateUI();
+        
+        // Initial instruction
+        if (instructionText != null)
+        {
+            instructionText.text = "Fly through all loops!";
+        }
     }
 
     public void CollectRing()
@@ -51,6 +60,14 @@ public class MissionManager : MonoBehaviour
         if (ringsCollected >= totalRings)
         {
             Debug.Log("All rings collected! Return to base.");
+            
+            // Update the instruction text for the player
+            if (instructionText != null)
+            {
+                instructionText.text = "MISSION UPDATE: Return to Base!";
+                instructionText.color = Color.yellow; // Make it pop!
+            }
+            
             OnAllRingsCollected.Invoke();
         }
     }
