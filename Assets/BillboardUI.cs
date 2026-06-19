@@ -18,8 +18,7 @@ public class BillboardUI : MonoBehaviour
     {
         if (mainCam != null)
         {
-            // The safest and most foolproof way to billboard UI in Unity:
-            // Just copy the exact rotation of the camera
+            // copy the exact rotation of the camera
             transform.rotation = mainCam.transform.rotation;
         }
     }

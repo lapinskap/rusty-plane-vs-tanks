@@ -1285,6 +1285,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 66706f4b812845141a532eddc8338276, type: 2}
+    - target: {fileID: 8491012669113544708, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
+      propertyPath: smokeEffectPrefab
+      value: 
+      objectReference: {fileID: 9093433604145932470, guid: 894d093a166fed24eb9952552d01385f, type: 3}
     - target: {fileID: 9131859547997866441, guid: ede375fa023cef64cbef944cb32947b5, type: 3}
       propertyPath: m_Name
       value: Biplane
@@ -1674,7 +1678,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3399060550451469964, guid: c04acf8f66a18f847ab37670d79ee826, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 531.01
+      value: 509.08
       objectReference: {fileID: 0}
     - target: {fileID: 3399060550451469964, guid: c04acf8f66a18f847ab37670d79ee826, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1682,7 +1686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3399060550451469964, guid: c04acf8f66a18f847ab37670d79ee826, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 607.76
+      value: 654.79
       objectReference: {fileID: 0}
     - target: {fileID: 3399060550451469964, guid: c04acf8f66a18f847ab37670d79ee826, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2802,6 +2806,10 @@ PrefabInstance:
       propertyPath: explosionRadius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1123597817259628360, guid: 4b852cf423fe99449bda34e7d4f3ac83, type: 3}
+      propertyPath: smokeEffectPrefab
+      value: 
+      objectReference: {fileID: 9093433604145932470, guid: 894d093a166fed24eb9952552d01385f, type: 3}
     - target: {fileID: 1626993655332505422, guid: 4b852cf423fe99449bda34e7d4f3ac83, type: 3}
       propertyPath: m_LocalPosition.x
       value: 393.05
@@ -4907,6 +4915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5920775766433880927, guid: 5eb39c1ddc8d15b4691933e8720e4b76, type: 3}
+      propertyPath: smokeEffectPrefab
+      value: 
+      objectReference: {fileID: 9093433604145932470, guid: 894d093a166fed24eb9952552d01385f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

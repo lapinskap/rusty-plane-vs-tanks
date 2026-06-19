@@ -5,6 +5,7 @@ public class BombCollision : MonoBehaviour
     [Header("Explosion Settings")]
     public float explosionRadius = 5.0f;
     public float explosionForce = 500.0f;
+    public GameObject smokeEffectPrefab;
     
     [Header("Friendly Fire")]
     [Tooltip("If true, this explosive will ignore collisions with the Biplane. Check this for player bombs, uncheck for tank rockets.")]
@@ -52,6 +53,14 @@ public class BombCollision : MonoBehaviour
         
         // Add a temporary script to handle the visual expansion and destruction
         explosionVisual.AddComponent<ExplosionEffect>();
+
+        // Add our cool new smoke effect on top of the blast!
+        if (smokeEffectPrefab != null)
+        {
+            // Spawn smoke pointing straight up since this is an explosion
+            GameObject smoke = Instantiate(smokeEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(smoke, 2f);
+        }
 
         // 2. Physics Logic (Find everything in the blast radius)
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);

@@ -6,6 +6,9 @@ public class Biplane : MonoBehaviour
     public GameObject missile;
     
     public Transform bombDropPoint;
+    
+    [Header("Effects")]
+    public GameObject smokeEffectPrefab;
 
     InputAction moveAction;
     InputAction moveFasterAction;
@@ -77,6 +80,18 @@ public class Biplane : MonoBehaviour
                 float damage = impactSpeed * 5f; 
                 myHealth.TakeDamage(damage);
                 Debug.Log($"Crash! {ourCollider.gameObject.name} hit {collision.gameObject.name} at speed {impactSpeed}. Took {damage} damage.");
+                
+                // 5. Spawn the smoke effect at the exact point of impact
+                if (smokeEffectPrefab != null)
+                {
+                    ContactPoint contact = collision.GetContact(0);
+                    // Point the smoke away from the wall we hit using contact.normal
+                    Quaternion rotation = Quaternion.LookRotation(contact.normal);
+                    GameObject smoke = Instantiate(smokeEffectPrefab, contact.point, rotation);
+                    
+                    // Automatically destroy the smoke object after 2 seconds so they don't clutter the game
+                    Destroy(smoke, 2f);
+                }
             }
         }
     }
