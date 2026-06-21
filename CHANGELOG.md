@@ -7,7 +7,6 @@ Introduce Mission logic:
 - MissonManager.cs: "the brains" of the mission
 - Finish line - a base player returns into
 
-
 Add Crash smoke to plane crashes and bomb explosion using particle system effect
 
 ### 0.7.0

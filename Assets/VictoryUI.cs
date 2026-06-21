@@ -34,4 +34,14 @@ public class VictoryUI : MonoBehaviour
         Time.timeScale = 1.0f; 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void NextLevel()
+    {
+        Time.timeScale = 1.0f; 
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+    }
 }

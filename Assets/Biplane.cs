@@ -24,13 +24,21 @@ public class Biplane : MonoBehaviour
         propeller = transform.Find("Propeller");
 
         fireMissileAction = InputSystem.actions.FindAction("FireMissile");
-        fireMissileAction.performed += ctx => FireMissile();
+        fireMissileAction.performed += FireMissile;
 
         // Listen for our own death to handle camera detachment and explosion!
         Health myHealth = GetComponent<Health>();
         if (myHealth != null)
         {
             myHealth.OnDeath.AddListener(OnBiplaneDestroyed);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (fireMissileAction != null)
+        {
+            fireMissileAction.performed -= FireMissile;
         }
     }
 
@@ -96,10 +104,10 @@ public class Biplane : MonoBehaviour
         }
     }
 
-    void FireMissile()
+    void FireMissile(InputAction.CallbackContext context)
     {
-        // 1. Determine spawn position. Use the assigned point, or default to 1.5 units below the plane's center.
-        Vector3 spawnPos = bombDropPoint != null ? bombDropPoint.position : transform.position - (transform.up * 1.5f);
+        // 1. Determine spawn position. Use the assigned point, or default to 2.5 units below the plane's center.
+        Vector3 spawnPos = bombDropPoint != null ? bombDropPoint.position : transform.position - (transform.up * 2.5f);
 
         var missileInstance = Instantiate(missile, spawnPos, transform.rotation);
         

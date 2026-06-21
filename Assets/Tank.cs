@@ -27,6 +27,20 @@ public class Tank : MonoBehaviour
             playerTarget = biplane.transform;
             playerRigidbody = biplane.GetComponent<Rigidbody>();
         }
+
+        Health myHealth = GetComponent<Health>();
+        if (myHealth != null)
+        {
+            myHealth.OnDeath.AddListener(OnTankDestroyed);
+        }
+    }
+
+    void OnTankDestroyed()
+    {
+        if (MissionManager.Instance != null)
+        {
+            MissionManager.Instance.DestroyTank();
+        }
     }
 
     // Calculates where the player will be by the time the rocket reaches them
