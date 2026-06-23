@@ -1882,6 +1882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   isGodMode: 1
+  sessionData: {fileID: 11400000, guid: be9fa9561c04d174fa2d2beab4c4aee1, type: 2}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

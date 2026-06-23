@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [Header("UI Panels")]
     [Tooltip("Drag the Main Menu Panel here.")]
     public GameObject mainMenuPanel;
 
     [Tooltip("Drag the HUD/Gameplay UI Panel here (optional) to hide it during menu.")]
     public GameObject gameplayHUDPanel;
 
+    [Header("Game Data")]
+    public bool startInMenu = true;
+    
+    [Tooltip("Link the GameSessionData here so the menu can set God Mode for all levels.")]
+    public SessionData sessionData;
+
     void Start()
     {
-        ShowMenu();
+        if (startInMenu)
+            ShowMenu();
+        else
+        {
+            SetPlayerGodMode(false);
+            StartGameSequence();
+        }
     }
 
     public void ShowMenu()
@@ -45,7 +58,13 @@ public class MainMenuUI : MonoBehaviour
 
     private void SetPlayerGodMode(bool godModeEnabled)
     {
-        // Find the player in the scene
+        // 1. Update the persistent ScriptableObject if it's linked
+        if (sessionData != null)
+        {
+            sessionData.isGodMode = godModeEnabled;
+        }
+
+        // 2. Also update the player in the current scene just to be safe
         Biplane player = Object.FindAnyObjectByType<Biplane>();
         if (player != null)
         {

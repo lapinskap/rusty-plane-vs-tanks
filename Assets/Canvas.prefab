@@ -2867,6 +2867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuPanel: {fileID: 126928201412029651}
   gameplayHUDPanel: {fileID: 6525094961605523906}
+  startInMenu: 1
+  sessionData: {fileID: 11400000, guid: be9fa9561c04d174fa2d2beab4c4aee1, type: 2}
 --- !u!114 &2322862302052971883
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,6 +49,8 @@ public class PauseMenuUI : MonoBehaviour
         {
             pauseMenuPanel.SetActive(true);
         }
+
+        Debug.Log("Game Paused. Press Resume or Escape to continue.");
     }
 
     public void ResumeGame()
@@ -60,6 +62,8 @@ public class PauseMenuUI : MonoBehaviour
         {
             pauseMenuPanel.SetActive(false);
         }
+
+        Debug.Log("Game Resumed.");
     }
 
     public void ReturnToMainMenu()
@@ -71,5 +75,7 @@ public class PauseMenuUI : MonoBehaviour
         // Since MainMenuUI runs its Start() method on scene load, 
         // reloading the scene will reset all gameplay and show the main menu again!
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        Debug.Log("Returning to Main Menu...");
     }
 }
